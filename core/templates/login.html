@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block titulo %}Login{% endblock %}
+
+{% block content %}
+<div class="container">
+	{% if status == '0' %}
+		<div class="alert alert-success">conta criada com sucesso, faça o login</div>
+	{% endif %}
+
+	{% if status == '1' %}
+		<div class=" alert alert-success">Login efectuado com sucesso</div>
+	{% endif %}
+
+	{% if status == '3' %}
+		<div class="alert alert-success">Logout Efectuado com sucesso</div>
+	{% endif %}
+	{% if status == '2' %}
+		<div class=" alert alert-info">Credências inválidas</div>
+	{% endif %}
+	<div clas="container">
+		<form method="POST" action="{% url 'login' %}">{% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite seu email" name="email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha" name="senha"> 
+  </div>
+  <button type="submit" class="btn btn-primary">Enviar</button>|<a href="{% url 'cadastro' %}"><button class="btn btn-success">Cadastrar</button></a>
+</form>
+	</div>
+</div>
+{% endblock %}
